@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "Physics Question",
+        "title": "Solving this question will increase your understanding of the IUT admission test",
+        "price": 0,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?t=st=1726271786~exp=1726275386~hmac=4962e38cf64c0c5f5f0ee548f958d5bd015476985c4ae67a48789dec33252f44&w=740"
+    },
+    {
+        "id": 2,
+        "name": "Math Question",
+        "title": "Solving this question will increase your understanding of the IUT admission test",
+        "price": 10,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?t=st=1726271786~exp=1726275386~hmac=4962e38cf64c0c5f5f0ee548f958d5bd015476985c4ae67a48789dec33252f44&w=740"
+    },
+    {
+        "id": 3,
+        "name": "Chemistry Question",
+        "title": "Solving this question will increase your understanding of the IUT admission test",
+        "price": 30,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?t=st=1726271786~exp=1726275386~hmac=4962e38cf64c0c5f5f0ee548f958d5bd015476985c4ae67a48789dec33252f44&w=740"
+    },
+    {
+        "id": 4,
+        "name": "English Question",
+        "title": "Solving this question will increase your understanding of the IUT admission test",
+        "price": 50,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?t=st=1726271786~exp=1726275386~hmac=4962e38cf64c0c5f5f0ee548f958d5bd015476985c4ae67a48789dec33252f44&w=740"
+    }
+]
