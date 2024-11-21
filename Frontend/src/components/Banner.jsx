@@ -1,16 +1,16 @@
 import React from 'react';
-import banner from "../../public/Banner.jpg";
+import banner from "../../public/Banner1.png";
 
 function Banner() {
   return (
     <>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row items-center mb-12 my-10"> 
+      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row items-center mb-12 my-10">
         <div className="w-full md:w-1/2 order-2 md:order-1 mt-12 md:mt-32 space-y-8 md:space-y-12">
           <h1 className="text-4xl font-bold">
-            Are you excited enough to board <span className="text-green-500">Road to IUT</span>
+            Are you Excited enough to on board <span className="text-green-500">Road to IUT!!!</span>
           </h1>
           <p className="text-xl">
-            Shakkhar here writes something about our website, its activity, and what type of benefits will be provided.
+            LearnQuest is your go-to destination for IUT admission updates and expert insights. We offer valuable analysis and essential books to help you navigate and succeed in the IUT admission process.
           </p>
           <div className="flex items-center gap-2">
             <svg
@@ -23,7 +23,9 @@ function Banner() {
             </svg>
             <input type="text" className="grow input input-bordered" placeholder="Email" />
           </div>
-          <button className="btn mt-6 btn-secondary">Subscribe</button>
+          <button className="btn mt-6 btn-secondary block">Submit</button>
+
+
         </div>
 
         {/* Image Section */}
