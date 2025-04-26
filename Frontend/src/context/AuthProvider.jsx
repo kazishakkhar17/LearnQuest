@@ -1,25 +1,34 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  const storedUser = localStorage.getItem("Users");
-  let parsedUser = null;
+  const [authUser, setAuthUser] = useState(() => {
+    const storedUser = localStorage.getItem("Users");
+    try {
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.error("Error parsing user from localStorage", error);
+      return null;
+    }
+  });
 
-  try {
-    parsedUser = storedUser ? JSON.parse(storedUser) : null;
-  } catch (error) {
-    console.error("Error parsing user from localStorage", error);
-    parsedUser = null;
-  }
-
-  const [authUser, setAuthUser] = useState(parsedUser);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("Users");
+    if (storedUser) {
+      try {
+        setAuthUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error("Error parsing user from localStorage in useEffect", error);
+      }
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={[authUser, setAuthUser]}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
 export const useAuth = () => useContext(AuthContext);

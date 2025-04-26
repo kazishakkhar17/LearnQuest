@@ -1,52 +1,57 @@
-import User from "../model/user.model.js"
-import bcryptjs from "bcryptjs"
+import bcryptjs from 'bcryptjs';
+import User from '../model/user.model.js';
 
-export const signup=async (req,res)=>{
-  try{
-    const { FullName, Email, Password }= req.body;
-    const user=await User.findOne({Email});
-    if(user)
-    {
-      return res.status(400).json({message:"User already exists"})
+// Signup function
+export const signup = async (req, res) => {
+  try {
+    const { FullName, Email, Password } = req.body;
+    const user = await User.findOne({ Email });
+
+    if (user) {
+      return res.status(400).json({ message: "User already exists" });
     }
-    const hashPassword = await bcryptjs.hash(Password,10);
-    const createdUser=new User({
-      FullName:FullName,
-      Email:Email,
-      Password:hashPassword
-    })
 
-    await createdUser.save()
-    res.status(201).json({message:"User created successfully"})
+    const hashPassword = await bcryptjs.hash(Password, 10);
+    const createdUser = new User({
+      FullName,
+      Email,
+      Password: hashPassword,
+    });
+
+    await createdUser.save();
+    res.status(201).json({ message: "User created successfully" });
+  } catch (error) {
+    console.log("Error: ", error.message);
+    res.status(500).json({ message: "Internal server error" });
   }
-  catch(error)
-  {
-    console.log("Error: ",error.message);
-  }
-}
+};
 
-export const login=async(req,res)=>{
-  try{
-    const {Email,Password}=req.body;
-    const user=await User.findOne({Email});
-    const isMatch=await bcryptjs.compare(Password,user.Password);
+// Login function
+export const login = async (req, res) => {
+  try {
+    const { Email, Password } = req.body;
+    const user = await User.findOne({ Email });
 
-    if(!user || !isMatch)
-    {
-      return res.status(400).json({message:"Invalid username or password"});
+    if (!user) {
+      return res.status(400).json({ message: "Invalid username or password" });
     }
-    else
-    {
-      res.status(200).json({message:"Login Successful",user:{
-        _id:user.id,
-        FullName:user.FullName,
-        Email:user.Email
-      }})
+
+    const isMatch = await bcryptjs.compare(Password, user.Password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid username or password" });
     }
-  }
-  catch(err)
-  {
+
+    res.status(200).json({
+      message: "Login Successful",
+      user: {
+        _id: user.id,
+        FullName: user.FullName,
+        Email: user.Email,
+        role: user.role, // Include role
+      },
+    });
+  } catch (err) {
     console.log(err.message);
-    res.status(500).json({message:"Internal server error"})
+    res.status(500).json({ message: "Internal server error" });
   }
-}
+};
