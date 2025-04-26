@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // 👈 added useNavigate
+import { Link, useNavigate } from 'react-router-dom'; //  added useNavigate
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 
 function Signup() {
-  const navigate = useNavigate(); // 👈 initialize navigate
+  const navigate = useNavigate(); //  initialize navigate
 
   const {
     register,
@@ -30,7 +30,7 @@ function Signup() {
         if (res.data) {
           toast.success("Signup successful!");
           localStorage.setItem("Users", JSON.stringify(res.data.user));
-          navigate("/"); // 👈 redirect to home after success
+          navigate("/"); //  redirect to home after success
         }
       })
       .catch((err) => {
