@@ -1,4 +1,4 @@
-
+import { useAuth } from "./context/AuthProvider"
 import Home from './home/Home';
 
 import { Navigate, Route, Routes } from "react-router-dom";

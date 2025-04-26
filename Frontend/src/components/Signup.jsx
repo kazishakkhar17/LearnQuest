@@ -1,45 +1,49 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Login from './Login';
+import { Link, useNavigate } from 'react-router-dom'; // 👈 added useNavigate
 import { useForm } from "react-hook-form";
-import axios from "axios"
-import { toast, ToastContainer } from 'react-hot-toast';
+import axios from "axios";
+import { toast } from 'react-hot-toast';
+
 function Signup() {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit =async (data) => {
-        console.log(data)
-        const userInfo = {
-          FullName: data.fullname, 
-          Email: data.email, 
-          Password: data.password   
-        };
-        
-       await axios.post("http://localhost:4001/user/signup",userInfo).then((res)=>{
+  const navigate = useNavigate(); // 👈 initialize navigate
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const userInfo = {
+      FullName: data.fullname,
+      Email: data.email,
+      Password: data.password,
+    };
+
+    await axios
+      .post("http://localhost:4000/user/signup", userInfo)
+      .then((res) => {
         console.log(res.data);
-          if(res.data){
-            toast.success("Signup successful!");
-            
-          }
-          localStorage.setItem("Users",JSON.stringify(res.data.user));
-        })
-        .catch(err=>{
-          toast.error("Signup failed! Please try again")
-        })
-      }
+        if (res.data) {
+          toast.success("Signup successful!");
+          localStorage.setItem("Users", JSON.stringify(res.data.user));
+          navigate("/"); // 👈 redirect to home after success
+        }
+      })
+      .catch((err) => {
+        toast.error("Signup failed! Please try again");
+      });
+  };
+
   return (
-   <>
+    <>
       <div className="flex h-screen items-center justify-center">
-        <div className=" w-[600px] ">
+        <div className="w-[600px]">
           <div className="modal-box">
             <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-              
               <Link
                 to="/"
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -113,7 +117,6 @@ function Signup() {
                   >
                     Login
                   </button>{" "}
-                  <Login />
                 </p>
               </div>
             </form>
@@ -121,7 +124,7 @@ function Signup() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Signup
+export default Signup;
