@@ -1,43 +1,56 @@
 /* eslint-disable no-unused-vars */
-
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
+import { useAuth } from '../context/AuthProvider'; // add this
 
 function Login() {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit =async (data) => {
-        console.log(data)
-        const userInfo = {
-          Email: data.email, 
-          Password: data.password   
-        };
-        
-       await axios.post("http://localhost:4000/user/login",userInfo).then((res)=>{
-        console.log(res.data);
-          if(res.data){
-            
-            toast.success("Login successful!");
-          }
-          localStorage.setItem("Users",JSON.stringify(res.data.user));
-        })
-        .catch(err=>{
-          toast.error("Signup failed! Please try again")
-        })
+  const navigate = useNavigate();
+  const [authUser, setAuthUser] = useAuth(); // add this
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const userInfo = {
+      Email: data.email,
+      Password: data.password
+    };
+
+    try {
+      const res = await axios.post("http://localhost:4000/user/login", userInfo);
+
+      if (res.data && res.data.user) {
+        localStorage.setItem("Users", JSON.stringify(res.data.user));
+        setAuthUser(res.data.user); // set user immediately
+        toast.success("Login successful!");
+        document.getElementById("my_modal_3")?.close();
+
+        if (res.data.user.role === "admin") {
+          navigate("/AdminExamBoard");
+        } else {
+          navigate("/");
+        }
+      } else {
+        toast.error("Invalid login response!");
       }
+
+    } catch (err) {
+      console.error(err);
+      toast.error("Login failed! Please try again.");
+    }
+  };
+
+
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
           <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <Link
               to="/"
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -47,6 +60,7 @@ function Login() {
             </Link>
 
             <h3 className="font-bold text-lg">Login</h3>
+
             {/* Email */}
             <div className="mt-4 space-y-2">
               <span>Email</span>
@@ -57,14 +71,14 @@ function Login() {
                 className="w-80 px-3 py-1 border rounded-md outline-none"
                 {...register("email", { required: true })}
               />
-              <br />
               {errors.email && (
                 <span className="text-sm text-red-500">
                   This field is required
                 </span>
               )}
             </div>
-            {/* password */}
+
+            {/* Password */}
             <div className="mt-4 space-y-2">
               <span>Password</span>
               <br />
@@ -74,7 +88,6 @@ function Login() {
                 className="w-80 px-3 py-1 border rounded-md outline-none"
                 {...register("password", { required: true })}
               />
-              <br />
               {errors.password && (
                 <span className="text-sm text-red-500">
                   This field is required
@@ -101,7 +114,7 @@ function Login() {
         </div>
       </dialog>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
