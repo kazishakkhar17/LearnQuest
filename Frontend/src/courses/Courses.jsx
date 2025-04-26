@@ -7,11 +7,11 @@ function Courses() {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen">
-        <Course />
-      </div>
-      <Footer />
+    <Navbar/>
+    <div className="min-h-screen">
+    <Course />
+    </div>
+    <Footer/>
     </>
   )
 }

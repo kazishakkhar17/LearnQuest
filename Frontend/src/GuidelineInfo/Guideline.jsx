@@ -5,15 +5,15 @@ import GuidelineUpdate from '../components/GuidelineUpdate'
 
 function Guideline() {
 
-    return (
-        <>
-            <Navbar />
-            <div className="min-h-screen">
-                <GuidelineUpdate />
-            </div>
-            <Footer />
-        </>
-    )
+  return (
+    <>
+    <Navbar/>
+    <div className="min-h-screen">
+    <GuidelineUpdate />
+    </div>
+    <Footer/>
+    </>
+  )
 }
 
 export default Guideline

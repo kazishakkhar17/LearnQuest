@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Caret from './Icon/Caret';
-// Importing the Caret component
+ // Importing the Caret component
 
 function AdmissionUpdate() {
     const [sort, setSort] = useState({ keyToSort: 'DEPARTMENT', direction: 'asc' });
@@ -74,17 +74,17 @@ function AdmissionUpdate() {
                 </tbody>
             </table>
             <div className="mt-8 flex justify-center space-x-4">
-                <a
-                    href="https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=BDT"
-                    target="_blank"
+                <a 
+                    href="https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=BDT" 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
                 >
                     Check Current Dollar Rate
                 </a>
-                <a
-                    href="https://admission.iutoic-dhaka.edu"
-                    target="_blank"
+                <a 
+                    href="https://admission.iutoic-dhaka.edu" 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
                 >
@@ -93,7 +93,7 @@ function AdmissionUpdate() {
             </div>
         </div>
 
-
+        
     );
 }
 

@@ -5,15 +5,15 @@ import AdmissionUpdate from '../components/AdmissionUpdate'
 
 function Admission() {
 
-    return (
-        <>
-            <Navbar />
-            <div className="min-h-screen">
-                <AdmissionUpdate />
-            </div>
-            <Footer />
-        </>
-    )
+  return (
+    <>
+    <Navbar/>
+    <div className="min-h-screen">
+    <AdmissionUpdate />
+    </div>
+    <Footer/>
+    </>
+  )
 }
 
 export default Admission
