@@ -10,7 +10,7 @@ function Banner() {
             Are you Excited enough to on board <span className="text-green-500">Road to IUT!!!</span>
           </h1>
           <p className="text-xl">
-            LearnQuest is your go-to destination for IUT admission updates and expert insights. We offer valuable analysis and essential books to help you navigate and succeed in the IUT admission process.
+          LearnQuest is your go-to destination for IUT admission updates and expert insights. We offer valuable analysis and essential books to help you navigate and succeed in the IUT admission process.
           </p>
           <div className="flex items-center gap-2">
             <svg
@@ -24,7 +24,7 @@ function Banner() {
             <input type="text" className="grow input input-bordered" placeholder="Email" />
           </div>
           <button className="btn mt-6 btn-secondary block">Submit</button>
-
+          
 
         </div>
 

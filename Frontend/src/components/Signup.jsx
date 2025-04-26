@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import { useForm } from "react-hook-form";
+import axios from "axios"
+import { toast, ToastContainer } from 'react-hot-toast';
 function Signup() {
     const {
         register,
@@ -10,14 +13,33 @@ function Signup() {
         formState: { errors },
       } = useForm()
     
-      const onSubmit = (data) => console.log(data)
+      const onSubmit =async (data) => {
+        console.log(data)
+        const userInfo = {
+          FullName: data.fullname, 
+          Email: data.email, 
+          Password: data.password   
+        };
+        
+       await axios.post("http://localhost:4001/user/signup",userInfo).then((res)=>{
+        console.log(res.data);
+          if(res.data){
+            toast.success("Signup successful!");
+            
+          }
+          localStorage.setItem("Users",JSON.stringify(res.data.user));
+        })
+        .catch(err=>{
+          toast.error("Signup failed! Please try again")
+        })
+      }
   return (
    <>
       <div className="flex h-screen items-center justify-center">
         <div className=" w-[600px] ">
           <div className="modal-box">
             <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-              {/* if there is a button in form, it will close the modal */}
+              
               <Link
                 to="/"
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -84,7 +106,7 @@ function Signup() {
                 <p className="text-xl">
                   Have account?{" "}
                   <button
-                    className="underline text-blue-500 cursor-pointer"
+                    className="underline text-purple-500 cursor-pointer"
                     onClick={() =>
                       document.getElementById("my_modal_3").showModal()
                     }
