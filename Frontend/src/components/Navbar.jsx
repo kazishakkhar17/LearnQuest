@@ -49,6 +49,7 @@ function Navbar() {
       <li className="mx-1"><a href="/course">Course</a></li>
       <li className="mx-1"><a href="/AdmissionUpdate">Admission Update</a></li>
       <li className="mx-1"><a href="/GuidelineUpdate">Advisory Guidelines</a></li>
+      <li className="mx-1"><a href="/Exam">Take Exam</a></li>
       
       <li className="mx-1"><a href="#">Contact</a></li>
       <li className="mx-1"><a href="#">About</a></li>

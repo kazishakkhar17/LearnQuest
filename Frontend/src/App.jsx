@@ -6,6 +6,7 @@ import Signup from './components/Signup';
 import Admission from './AdmissionInfo/Admission';
 import Guideline from './GuidelineInfo/Guideline';
 import AdminsBoard from './AdminsExamBoard/AdminsBoard';  // Import the AdminExamBoard component
+import Exams from './Exams/Exams';
 import { Toaster } from 'react-hot-toast';
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/course" element={authUser ? <Courses /> : <Navigate to="/signup" />} />
+          <Route path="/Exam" element={authUser ? <Exams /> : <Navigate to="/signup" />} />
           <Route path="/AdmissionUpdate" element={<Admission />} />
           <Route path="/GuidelineUpdate" element={<Guideline />} />
           <Route 
