@@ -24,12 +24,34 @@ export const addQuestion = async (req, res) => {
     });
 
     // Save the new question to the database
-    await newQuestion.save();
+    const savedQuestion = await newQuestion.save();  // Save question and log it
+
+    // Log the saved question for debugging
+    console.log("Question saved successfully:", savedQuestion);
 
     // Respond with the newly added question
-    res.status(201).json(newQuestion);
+    res.status(201).json(savedQuestion);
   } catch (error) {
     console.log("Error:", error); // Log error for debugging
     res.status(400).json({ message: "Error adding question", error }); // Respond with an error if saving fails
+  }
+};
+
+// Controller function to delete a question
+export const deleteQuestion = async (req, res) => {
+  const { id } = req.params; // Get question ID from URL parameters
+
+  try {
+    const deletedQuestion = await Question.findByIdAndDelete(id); // Delete the question by ID
+
+    if (!deletedQuestion) {
+      return res.status(404).json({ message: "Question not found" }); // If no question is found with the given ID
+    }
+
+    // Respond with success message if deletion is successful
+    res.status(200).json({ message: "Question deleted successfully", deletedQuestion });
+  } catch (error) {
+    console.log("Error:", error); // Log error for debugging
+    res.status(500).json({ message: "Error deleting question", error }); // Respond with an error if deletion fails
   }
 };

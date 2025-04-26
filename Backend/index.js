@@ -27,7 +27,7 @@ try {
 // Routes
 app.use("/book", bookRoute);
 app.use("/user", userRoute);
-app.use("/api/questions", questionRoute); // added
+app.use("/questions", questionRoute); // added
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
