@@ -104,7 +104,8 @@ const Exams = () => {
       <p className="text-xl text-gray-400 mb-4">Time Remaining: {formatTime(timer)}</p>
       {questions.length > 0 ? (
         <div className="bg-white border-2 border-gray-400 p-8 rounded-lg shadow-lg w-full max-w-xl mb-6"> {/* Made the question area larger */}
-          <h3 className="text-2xl text-gray-800 font-semibold mb-4">{questions[currentQuestionIndex].questionText}</h3>
+          <h3 className="text-2xl text-gray-800 font-semibold mb-4">{currentQuestionIndex + 1}. {questions[currentQuestionIndex].questionText}</h3>
+
           <div className="flex flex-col space-y-4">
             {questions[currentQuestionIndex].options.map((option, index) => {
               const optionColor = answerColors[currentQuestionIndex]?.colors[index] || "bg-gray-400";
